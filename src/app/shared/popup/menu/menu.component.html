@@ -1,0 +1,125 @@
+<div *ngIf="loading" class="spinner-wrapper popup">
+    <app-sppinerloading></app-sppinerloading>
+</div>
+
+<button class="btn btn-icon fa fa-chevron-left closeMenu_popup" (click)="onClickCloseModal()"></button>
+
+<app-card *ngIf="parent=='CCDOC'" cardTitle="Opciones {{titulo1}}" [options]="false" [cartTabs]='true' [back]='true'>
+    <div style="margin-top:5%;margin-left: 10%;">
+        <div class="taskboard-right-revision user-box">
+            <div *ngIf="factura.canModify" class="row">
+                <div class="col-md-6">
+                    <div *ngIf="noshow1" class="media cuadro_popup_principal">
+                        <div class="media-left">
+                            <button [disabled]="option1" class="btn btn-icon btn-rounded btn-outline-success fa fa-plus" (click)="onClickOption1CCDOC()"></button>
+                        </div>
+                        <div class="media-left">
+                            <div class="chat-header f-w-400 mb-1 titulo_popup_opciones">Aceptar</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div *ngIf="noshow2" class="media cuadro_popup_principal">
+                        <div class="media-left">
+                            <button [disabled]="option2" class="btn btn-icon btn-rounded btn-outline-danger fa fa-unlink" (click)="onClickOption2CCDOC()"></button>
+                        </div>
+                        <div class="media-left">
+                            <div class="chat-header f-w-400 mb-1 titulo_popup_opciones">Rechazar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div *ngIf="noshow3" class="media cuadro_popup_principal">
+                        <div class="media-left">
+                            <button [disabled]="option3" class="btn btn-icon btn-rounded btn-outline-primary fa fa-book-open" (click)="onClickOption3CCDOC()"></button>
+                        </div>
+                        <div class="media-left">
+                            <div class="chat-header f-w-400 mb-1 titulo_popup_opciones">Comentar</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div *ngIf="noshow4" class="media cuadro_popup_principal">
+                        <div class="media-left">
+                            <button [disabled]="option4" class="btn btn-icon btn-rounded btn-outline-primary fa fa-retweet" (click)="onClickOption4CCDOC()"></button>
+                        </div>
+                        <div class="media-left">
+                            <div class="chat-header titulo_popup_opciones">Cambiar Flujo</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div *ngIf="noshow6" class="media cuadro_popup_principal">
+                        <div class="media-left">
+                            <button [disabled]="option6" class="btn btn-icon btn-rounded btn-outline-primary fa fa-paper-plane" (click)="onClickOption6CCDOC()"></button>
+                        </div>
+                        <div class="media-left">
+                            <div class="chat-header f-w-400 mb-1 titulo_popup_opciones">Responder a origen</div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div *ngIf="noshow5" class="media cuadro_popup_principal">
+                        <div class="media-left">
+                            <button [disabled]="option5" class="btn btn-icon btn-rounded btn-outline-primary fa fa-level-up-alt" (click)="onClickOption5CCDOC()"></button>
+                        </div>
+                        <div class="media-left">
+                            <div class="chat-header titulo_popup_opciones">Escalar</div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div *ngIf="noshow7" class="media cuadro_popup_principal">
+                        <div class="media-left">
+                            <button [disabled]="option7" class="btn btn-icon btn-rounded btn-outline-primary fa fa-people-carry" (click)="onClickOption7CCDOC()"></button>
+                        </div>
+                        <div class="media-left">
+                            <div class="chat-header f-w-400 mb-1 titulo_popup_opciones">Comparar</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div *ngIf="noshow8" class="media cuadro_popup_principal">
+                        <div class="media-left">
+                            <button [disabled]="option8" class="btn btn-icon btn-rounded btn-outline-primary fa fa-truck-moving" (click)="onClickOption8CCDOC()"></button>
+                        </div>
+                        <div class="media-left">
+                            <div class="chat-header f-w-400 mb-1 titulo_popup_opciones">Crear CxP</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div *ngIf="noshow9" class="media cuadro_popup_principal" style="width: 100%;">
+                    <div class="media-left">
+                        <button [disabled]="option9" class="btn btn-icon btn-rounded btn-outline-primary fa fa-project-diagram" (click)="onClickOption9CCDOC()"></button>
+                    </div>
+                    <div class="media-left">
+                        <div class="chat-header f-w-400 mb-1 titulo_popup_opciones">Crear Adjunto</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div *ngIf="noshow9" class="media cuadro_popup_principal" style="width: 100%;">
+                    <div class="media-left">
+                        <button [disabled]="option9" class="btn btn-icon btn-rounded btn-outline-primary fa fa-project-diagram" (click)="onClickOption10CCDOC()"></button>
+                    </div>
+                    <div class="media-left">
+                        <div class="chat-header f-w-400 mb-1 titulo_popup_opciones">Ver Documento</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</app-card>

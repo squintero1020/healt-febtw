@@ -1,0 +1,64 @@
+<div class="container-login100">
+    <div class="auth-wrapper">
+        <div class="auth-content">
+            <div class="auth-bg">
+            </div>
+            <form [formGroup]="loginForm">
+                <div *ngIf="!updates" class="card authentication">
+                    <div class="card-body text-center">
+                        <img src="../../../../assets/images/gdoc.png" class="logo_Inicio">
+                        <div *ngIf="!titleEnvironment" class="row" style="position: relative; top: -8%; padding: 10px;">
+                            <span class="letterTittleAuth">¡La vida es mejor para aquellos que hacen lo posible para tener <span class="letterTittleAuth blue">lo mejor!</span></span>
+                        </div>
+
+                        <div *ngIf="titleEnvironment" class="card-body text-center">
+                            <div class="row" style="position: relative; margin-top: -100px; padding: 10px;">
+                                <span class="letterTittleAuth" style="font-size: 40px; padding: 10%;">{{titleEnvironment}}</span>
+                            </div>
+                        </div>
+
+                        <h3 class="mb-4">Iniciar Sesión</h3>
+
+                        <div [ngClass]="[!f.Correo.errors ? 'wrap-input100 validate-input': 'wrap-input100 validate-input alert-validate']" data-validate="Ingrese un correo electrónico válido">
+                            <input formControlName="Correo" id="email" [ngClass]="[!loginForm.value.email ? 'input100': 'input100 has-val']" type="text" (keypress)="leavePassword($event)" (focusin)="leavePassword($event)" (keydown)="leavePassword($event)" autocomplete="off">
+                            <span class="focus-input100"></span>
+                            <span class="label-input100">Correo Electrónico</span>
+                        </div>
+
+                        <div [ngClass]="[!f.Contrasena.errors ? 'wrap-input100 validate-input': 'wrap-input100 validate-input alert-validate']" data-validate="Se requiere una contraseña">
+                            <input formControlName="Contrasena" id="password" [ngClass]="[!loginForm.value.Contrasena ? 'input100': 'input100 has-val']" type="password" name="pass" (keypress)="enterPassword($event)" (keydown)="enterPassword($event)" autocomplete="off">
+                            <span class="focus-input100"></span>
+                            <span class="label-input100">Contraseña</span>
+                        </div>
+
+                        <br>
+                        <!---->
+                        <button id="btnLogin" [disabled]="loginForm.invalid" class="btn btn-primary mb-4" (click)="submit();">Ingresar</button>
+                        <!--<p class="mb-2 text-muted"><a [routerLink]="['/auth/reset-password']">Olvido la Contraseña?</a></p>
+                        <p class="mb-0 text-muted">No tienes una cuenta <a [routerLink]="['/auth/signup']">Registrate</a></p>-->
+                        <br><br>
+                    </div>
+                </div>
+                <div *ngIf="updates" class="card authentication">
+                    <div class="card-body text-center">
+                        <img src="../../../../assets/images/gdoc.png" class="logo_Inicio">
+                        <div class="card-body text-center">
+                            <div class="row" style="position: relative; margin-top: -100px; padding: 10px;">
+                                <span class="letterTittleAuth" style="font-size: 40px; padding: 10%;">Estamos actualizando</span>
+                            </div>
+                        </div>
+
+                        <div class="card-body text-center">
+                            <div class="row" style="position: relative; margin-top: -100px; padding: 10px;">
+                                <span class="letterTittleAuth" style="font-size: 24px; padding: 10%;">Pronto estaremos disponibles de nuevo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.25)" size="large" color="#36618B" type="ball-spin-clockwise-fade-rotating"></ngx-spinner>
+<!-- <mat-spinner></mat-spinner> -->

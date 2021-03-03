@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-md-12">
+      <app-card [hidHeader]="true" cardClass="user-card">
+          <h2>Importar desde Excel</h2>
+          <p>Usa esta opción solo para crear nuevos terceros desde Excel, puedes importar hasta 1000 por cada archivo.
+          </p>
+          <p>Para descargar la plantilla base haz <a
+                  href="https://amazonaserp.com/PRODUCTOS-V1-1-2.xlsx" target="_blank"
+                  style="font-weight: bold; cursor: pointer;">clic aquí.</a></p>
+          <br>
+          <button *ngIf="structureValidate?.length === 0" class="btn btn-primary btn-upload"> <i class="fa fa-upload"></i> Elegir archivo</button>
+
+          <div class="row">
+              <div class="col-md-12">
+                  <input #inpUpload  multiple="false" hidden type="file" id="inputFile" (change)="onFileChange($event)">
+          <div  *ngIf="structureValidate?.length != 0" class="card card-excel">
+              <div class="card-body">
+                  <p style="margin-bottom: 0rem;" ><i class="icon-excel fa fa-file-excel"></i><span class="file-name" >{{fileName}}</span> <span><i (click)="deleteFile()" title="Eliminar archivo" class="fa fa-trash icon-trash-s"></i></span> </p>
+              </div>
+          </div>
+              </div>
+              <div class="col-md-12">
+                  <mat-tab-group *ngIf="structureValidate?.length != 0" id="importdtls" [selectedIndex]="selected.value">
+
+                      <mat-tab label="Productos" style="padding: 1%;">
+                          <table *ngIf="structureValidate?.length != 0" datatable class="table">
+                              <thead>
+                                  <tr>
+                                      <th>Id</th>
+                                      <th>Descripcion</th>
+                                      <th>Precio</th>
+                                      <th>Estado</th>
+                                      <th>Resultado</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr class="tbody" *ngFor="let contact of structureValidate; let odd = odd" [ngClass]="{'odd': odd}">
+                                      <td>{{contact?.ItemID}}</td>
+                                      <td>{{contact?.ItemDescription}}</td>
+                                      <td>{{contact?.SalePrice}}</td>
+                                      <td>
+                                          <i [class]="contact?.Success ? 'fa fa-check-circle i-succ' : 'fa fa-exclamation-circle i-dang'"></i>
+                                      </td>
+                                      <td> <p>{{contact?.Result}}</p></td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </mat-tab>
+                  </mat-tab-group>
+              </div>
+          </div>
+
+
+          <br>
+          <div class="row" *ngIf="structureValidate?.length != 0">
+              <div class="col-md-6"></div>
+              <div class="col-md-3">
+                  <button  class="btn btn-info btn-block">Reintentar</button>
+              </div>
+              <div  class="col-md-3">
+                  <button  class="btn btn-primary btn-block"  >Procesar</button>
+              </div>
+
+          </div>
+      </app-card>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+table.dataTable tbody th,
+table.dataTable tbody td {
+    padding: 0px 10px;
+    line-height: 45px;
+}
+
+.dataTables_length,
+.dataTables_filter {
+    label {
+        display: flex;
+        align-items: center;
+        select,
+        input {
+            background: $theme-background;
+            padding: 10px 20px;
+            border: 1px solid #ced4da;
+            margin: 5px 10px;
+            border-radius: .2rem;
+            &:focus {
+                box-shadow: none;
+                outline: none;
+                background: $theme-background;
+            }
+            &::-moz-placeholder {
+                color: #aaaeb3;
+                opacity: 1;
+            }
+            &:-ms-input-placeholder {
+                color: #aaaeb3;
+            }
+            &::-webkit-input-placeholder {
+                color: #aaaeb3;
+            }
+        }
+    }
+}
+
+.dataTables_wrapper {
+    .dt-buttons {
+        display: inline-flex;
+        vertical-align: middle;
+    }
+    .dt-button {
+        background: $primary-color;
+        border: 1px solid $primary-color;
+        color: #fff;
+        width: 45px;
+        height: 45px;
+        //font-size: 1rem;
+        padding: 10px 20px;
+        border-radius: 30px;
+        transition: all 0.3s ease-in-out;
+        &:active,
+        &:focus,
+        &:not(:disabled):not(.disabled):active {
+            background: $primary-color;
+            color: #fff;
+            box-shadow: none;
+        }
+        &.active {
+            background: $primary-color;
+            color: #fff;
+            border: 1px solid $primary-color;
+            box-shadow: none;
+        }
+    }
+}
+
+table.dataTable tbody>tr.selected,
+table.dataTable tbody>tr>.selected {
+    background-color: #dceff7;
+}

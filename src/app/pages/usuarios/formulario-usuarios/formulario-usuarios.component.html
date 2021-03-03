@@ -1,0 +1,79 @@
+<div class="col-xl-12 col-md-12">
+  <app-card cardTitle="Crear Usuario">
+
+    <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+      <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+        <mat-tab label="Datos" style="padding: 1%;">
+          <div class="container" style="padding: 30px;">
+            <label>Los campos marcados con * son obligatorios</label>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="nombres">
+                    Nombres(*)
+                  </label>
+                  <input type="text" class="form-control" formControlName="nombres"
+                    [ngClass]="{ 'is-invalid': f.nombres.errors }" />
+                  <div *ngIf="f.nombres.errors" class="invalid-feedback">
+                    <div *ngIf="f.nombres.errors.required">Debes ingresar un nombre.</div>
+                    <div *ngIf="f.nombres.errors.maxlength">El nombre no puede superar 100 caracteres.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Correo Electrónico</label>
+                  <input type="email" formControlName="correo" [readonly]="edit" class="form-control"
+                    [ngClass]="{ 'is-invalid': f.correo.errors }" onkeyup="this.value = this.value.toLowerCase();"
+                    pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$" />
+                  <div *ngIf="f.correo.errors" class="invalid-feedback">
+                    <div *ngIf="f.correo.errors.required">Debes ingresar un correo Electrónico.</div>
+                    <div *ngIf="f.correo.errors.email || f.correo.errors.pattern">Debes ingresar un correo Electrónico
+                      válido.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Teléfono(*)</label>
+                  <input type="text" class="form-control" formControlName="telefono"
+                    [ngClass]="{ 'is-invalid': f.telefono.errors }" />
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for='rolId'>Rol(*)</label>
+                  <select formControlName="rolId" class="form-control" [ngClass]="{ 'is-invalid': f.rolId.errors}">
+                    <option *ngFor="let rol of roles" [value]=rol.rolId>{{rol.nombre}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+
+            <!--<div class="form-row">
+                          <div class="form-group col">
+                              <div class="checkbox checkbox-primary checkbox-fill d-inline">
+                                  <input type="checkbox" id="switch-a-3" formControlName="Inactive" [ngClass]="{
+                      'is-invalid': f.Inactive.errors }" />
+                                  <label for="switch-a-3" class="cr"></label>
+                              </div>
+                              <label>Inactivo</label>
+                          </div>
+                      </div>-->
+
+            <div class="row">
+              <div class="col">
+                <button class="btn btn-primary btn-block btn-lg" [disabled]="addUserForm.invalid">Guardar</button>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+
+    </form>
+  </app-card>
+</div>

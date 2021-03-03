@@ -1,0 +1,44 @@
+<!-- <div class="containter"> -->
+<form [formGroup]="form">
+    <div class="card-body text-center">
+        <div class="form-group">
+            <label for="nombres">
+                Contraseña Actual
+            </label>
+            <input type="password" class="form-control" formControlName="currPassword" [ngClass]="{'is-invalid':f.currPassword.errors}"/>
+            <div *ngIf="f.newPassword.errors" class="invalid-feedback">
+                <div *ngIf="f.newPassword.errors.required">Ingrese su contraseña actual</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="nombres">
+                Nueva Contraseña
+            </label>
+            <input type="password" class="form-control" formControlName="newPassword"
+                [ngClass]="{'is-invalid':f.newPassword.errors}" pattern="^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$" />
+            <div *ngIf="f.newPassword.errors" class="invalid-feedback">
+                <div *ngIf="f.newPassword.errors.required">Debe ingresar una contraseña</div>
+                <div *ngIf="f.newPassword.errors.pattern">La contraseña no tiene un formato valido</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="nombres">
+                Confirmar Contraseña
+            </label>
+            <input type="password" class="form-control" formControlName="new2Password" [ngClass]="{'is-invalid':f.new2Password.errors}" />
+            <div *ngIf="f.new2Password.errors" class="invalid-feedback">
+                <div *ngIf="f.new2Password.errors.required">Confirma la contraseña</div>
+                <div *ngIf="f.new2Password.errors.confirmedValidator">La contraseña no coincide</div>
+            </div>
+        </div>
+        <button class="btn btn-primary mb-4" (click)="saveModal()" [disabled]="form.status == 'INVALID'">Guardar</button>
+        <button class="btn btn-primary mb-4" (click)="closeViewModal()">Cancelar</button>
+        
+        <p>
+            La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico.
+            
+        </p>
+    </div>
+</form>
+
+<!-- </div> -->

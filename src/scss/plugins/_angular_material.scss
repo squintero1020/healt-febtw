@@ -1,0 +1,152 @@
+@import "src/scss/_variables";
+.d-range {
+    padding: 0 0.3rem 0 0.3rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.btn-excell {
+    background: #36618b;
+    color: #fff;
+    width: 45px;
+    height: 45px;
+    font-size: 1rem;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+}
+
+.align-grid {
+    display: table-cell;
+    text-align: center;
+    padding-top: 0.2rem;
+}
+
+.full {
+    width: 100%;
+}
+
+.input-search {
+    width: 100%;
+}
+
+.m-button {
+    min-width: 33%;
+    @media (min-width: 700px) {
+        min-width: 25%;
+    }
+}
+
+.isPhone {
+    display: none;
+    @media (min-width: 700px) {
+        display: inline;
+    }
+}
+
+.mat-button-toggle-checked {
+    background-color: $primary-color;
+    color: #ffffff;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: transparent !important;
+}
+
+.toggle-group {
+    flex-wrap: wrap;
+    border-radius: 0.5rem;
+    box-shadow: none;
+}
+
+mat-cell:hover {
+    cursor: auto;
+    background-color: transparent;
+}
+
+mat-cell.mat-table-sticky {
+    background: aliceblue !important;
+    opacity: 1;
+    border-right: 1px solid;
+}
+
+.no-result {
+    font-weight: 500;
+    font-size: 20px;
+    position: sticky;
+    top: 50%;
+    left: 40%;
+    z-index: -1;
+    &.show {
+        z-index: 1;
+    }
+}
+
+.example-container {
+    height: 400px;
+    width: 100%;
+    overflow: auto;
+}
+
+.w-row {
+    min-width: 1300px !important;
+    @media (min-width: 700px) {
+        min-width: 1700px !important;
+    }
+    &.header {
+        border-top: #eaeaea 1px solid;
+        border-bottom: 2px solid;
+    }
+    &.footer {
+        font-weight: 500;
+        border-bottom: #eaeaea 1px solid;
+        border-top: 2px solid;
+    }
+}
+
+mat-header-cell,
+mat-cell {
+    height: 40px;
+}
+
+mat-header-cell {
+    width: 20px;
+    padding-right: 8px;
+    font-weight: 500;
+    color: #000000;
+}
+
+mat-row {
+    border-bottom: aliceblue 0.1px solid;
+    border-top: aliceblue 0.1px solid;
+}
+
+mat-row:nth-child(even) {
+    background-color: rgba(54, 97, 139, 0.05);
+}
+
+.example-sticky-toggle-group {
+    margin: 8px;
+}
+
+.mat-column-filler {
+    padding: 0 8px;
+    font-size: 10px;
+    text-align: center;
+}
+
+.mat-header-cell,
+.mat-footer-cell,
+.mat-cell {
+    min-width: 80px;
+    box-sizing: border-box;
+}
+
+.mat-header-row,
+.mat-footer-row,
+.mat-row {
+    min-width: 1920px;
+    /* 24 columns, 80px each */
+}

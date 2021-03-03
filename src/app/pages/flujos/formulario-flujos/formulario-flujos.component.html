@@ -1,0 +1,82 @@
+<app-card cardTitle="Creación de flujos">
+  <form [formGroup]="FormFlujos">
+    <div class="row">
+      <div class="form-group">
+        <label for="Nombre">Nombre</label>
+        <input type="text" class="form-control" formControlName="nombre" [ngClass]="{ 'is-invalid': f.nombre.errors }" >
+        <div *ngIf="f.nombre.errors" class="invalid-feedback">
+          <div *ngIf="f.nombre.errors.required">Debes ingresar un nombre.</div>
+          <div *ngIf="f.nombre.errors.maxlength">El nombre no puede superar 100 caracteres.</div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-primary" (click)="addLine()">
+          <span><i class="feather icon-plus"></i>Agregar regla</span>
+        </button>
+      </div>
+    </div>
+    <div class="row scroll-t" formArrayName="detallesflujo">
+      <table style="width: 100%;">
+        <thead >
+          <tr>
+            <th scope="text-center" style="width: 5%;" class="notraslate">Grupo</th>
+            <th scope="text-center" style="width: 5%;" class="notraslate">Acción</th>
+            <th scope="text-center" style="width: 5%;" class="notraslate">Disparadores</th>
+            <th scope="text-center" style="width: 5%;" class="notraslate">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr  *ngFor="let dtl of FormFlujos.controls.detallesflujo['controls']; let i=index"
+            [formGroupName]="i">
+            <td data-heading="Grupo">
+              <div class="form-group">
+                <select  class="form-control" formControlName="grupoId">
+                  <option *ngFor="let grupo of grupo$" [value]="grupo.grupoId">{{grupo.nombre}}</option>
+                </select>
+                <!-- class="form-control inputDtl" placeholder="Grupo" formControlName="GrupoId" (click)="clicInput(i)"> -->
+              </div>
+            </td>
+            <td  data-heading="accion">
+              <div class="form-group">
+                <select  class="form-control" formControlName="accionId">
+                  <option *ngFor="let accion of accione$" [value]="accion.accionId">{{accion.nombre}}</option>
+                </select>
+              </div>
+            </td>
+            <td  data-heading="disparador">
+              <div class="input-group">
+                <!-- <ng-select [ngClass]="'ng-select'" formControlName="DisparadorId" [options]="disparadoresNombres" [multiple]="true"></ng-select> -->
+                <ng-select [options]="disparadoresOptions"
+                formControlName="disparadores" placeholder="Seleccione un disparador."
+                [multiple]="true" notFoundMsg="Sin registros">
+
+                </ng-select>
+                <!-- <ng-select formControlName="DisparadorId">
+                  <ng-option *ngFor="let disparador of disparadore$" [value]="disparador.disparadorId">{{disparador.nombre}}</ng-option>
+               </ng-select> -->
+                <!-- <select formControlName="DisparadorId">
+                  <option *ngFor="let disparador of disparadore$" [value]="disparador.disparadorId">{{disparador.nombre}}</option>
+                </select> -->
+              </div>
+            </td>
+            <td  data-heading="accion">
+              <div class="input-group">
+                <button type="button" class="btn btn-icon btn-rounded feather icon-delete" (click)="deleteRow(i)"></button>'
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-primary btn-block btn-lg" (click)="onSubmit()" [disabled]="FormFlujos.invalid">Guardar</button>
+      </div>
+    </div>
+  </form>
+</app-card>
+

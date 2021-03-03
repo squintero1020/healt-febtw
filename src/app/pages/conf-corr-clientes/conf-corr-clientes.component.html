@@ -1,0 +1,87 @@
+<div class="col-xl-12 col-md-12">
+  <app-card cardTitle='Configuración correo electrónico'>
+    <form [formGroup]="addConfCorrCliente">
+      <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)" >
+        <mat-tab label="Datos" style="padding: 1%;">
+          <div class="container" style="padding: 30px;">
+            <label>Los campos marcados con * son obligatorios</label>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="nombre">Servidor(*)</label>
+                  <input type="text" class="form-control" formControlName="servidor"
+                    [ngClass]="{ 'is-invalid': f.servidor.errors }" />
+                  <div *ngIf="f.servidor.errors" class="invalid-feedback">
+                    <div *ngIf="f.servidor.errors.required">Debes ingresar un servidor.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="email">Correo Electrónico de la empresa(*)</label>
+                  <input type="email" formControlName="correo" class="form-control"
+                    [ngClass]="{ 'is-invalid': f.correo.errors }" onkeyup="this.value = this.value.toLowerCase();"
+                    pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$" />
+                  <div *ngIf="f.correo.errors" class="invalid-feedback">
+                    <div *ngIf="f.correo.errors.required">Debes ingresar un correo Electrónico.</div>
+                    <div *ngIf="f.correo.errors.email || f.correo.errors.pattern">Debes ingresar un correo Electrónico
+                      válido.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="contrasena">Contraseña(*)</label>
+                  <input type="password" class="form-control" formControlName="contrasena"
+                    [ngClass]="{ 'is-invalid': f.contrasena.errors }" />
+                  <div *ngIf="f.contrasena.errors" class="invalid-feedback">
+                    <div *ngIf="f.contrasena.errors.required">Debes ingresar una contraseña.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="puerto">Puerto(*)</label>
+                  <input type="number" class="form-control" formControlName="puerto"
+                    [ngClass]="{ 'is-invalid': f.puerto.errors }" />
+                  <div *ngIf="f.puerto.errors" class="invalid-feedback">
+                    <div *ngIf="f.puerto.errors.required">Debes ingresar un puerto.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-check">
+                  <label for='ssl'>Tiene certificado SSL?(*)</label>
+                  <input type="checkbox" class="form-control" formControlName="ssl" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="protocolo">Protocolo(*)</label>
+                  <div class="col-sm-9">
+                    <div class="form-check">
+                      <input type="radio" for="protocolo" class="form-check-input" formControlName="protocolo"
+                        value="IMAP" checked />
+                      <label class="form-check-label" for="protocolo">IMAP</label>
+                    </div>
+                    <div class="form-check">
+                      <input type="radio" for="protocolo" class="form-check-input" formControlName="protocolo"
+                        value="POP3" />
+                      <label class="form-check-label" for="protocolo">POP3</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <button class="btn btn-primary btn-block btn-lg" [disabled]="addConfCorrCliente.invalid" (click)="onSubmit()">Guardar</button>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+
+    </form>
+  </app-card>
+</div>

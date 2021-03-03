@@ -1,0 +1,12 @@
+{
+    "/api/*": {
+        "target": "https://apigdoc.amazonaserp.com/",
+        "secure": false,
+        "logLevel": "debug"
+    },
+    "/Users/*": {
+        "target": "http://181.48.242.66:26598/",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

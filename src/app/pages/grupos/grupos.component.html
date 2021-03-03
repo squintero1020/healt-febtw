@@ -1,0 +1,21 @@
+<div class="col-xl12 col-md-12">
+  <app-card cardTitle='Consulta general'>
+    <div class="row col-md-12" style="margin-bottom:2%;">
+      <a routerLink="formularioGrupos" class="btn btn-primary float-right" style="width: 200px;">
+      <i class="feather icon-plus-circle"></i>Crear grupo</a>
+      <!-- <a routerLink="formularioImportarUsuario" class="btn btn-primary float-right" style="width: 200px;">
+        <i class="feather icon-plus-circle"></i>Importar</a> -->
+    </div>
+    <div class="table-responsive">
+      <table datatable [dtOptions]="dtColumnsSearchingOptions" class="table table-striped row-border table-hover" style="width: 100%;">
+
+      </table>
+    </div>
+  </app-card>
+  <ngx-spinner 
+bdColor="rgba(0, 0, 0, 0.25)"
+size="large"
+color="#36618B"
+type="ball-spin-clockwise-fade-rotating"
+></ngx-spinner>
+</div>
