@@ -128,7 +128,7 @@
 .authentication {
     height: 97vh;
     width: 60vh;
-    box-shadow: 1px 3px 20px 2px $primary-color;
+    box-shadow: 1px 3px 20px 2px $theme-two-animation;
     @media screen and (max-width: 375px) {
         height: 97vh;
         width: 45vh;
@@ -136,10 +136,18 @@
     ;
 }
 
+@keyframes scaleModalLateral {
+    0% {
+        transform: translate(100%) translateZ(600px) rotate(0deg);
+    }
+    100% {
+        transform: translate(25%) translateZ(600px) rotate(0deg);
+    }
+}
+
 //AUTHENTITION
 .logo_Inicio {
     margin-left: 10%;
-    margin-top: -85px;
     position: static;
     width: 60%;
     z-index: 1;

@@ -1,4 +1,4 @@
-<div class="container-login100">
+<!--<div class="container-login100">
     <div class="auth-wrapper">
         <div class="auth-content">
             <div class="auth-bg">
@@ -6,36 +6,39 @@
             <form [formGroup]="loginForm">
                 <div *ngIf="!updates" class="card authentication">
                     <div class="card-body text-center">
-                        <img src="../../../../assets/images/gdoc.png" class="logo_Inicio">
-                        <div *ngIf="!titleEnvironment" class="row" style="position: relative; top: -8%; padding: 10px;">
-                            <span class="letterTittleAuth">¡La vida es mejor para aquellos que hacen lo posible para tener <span class="letterTittleAuth blue">lo mejor!</span></span>
-                        </div>
+                        <img src="https://btw.com.co/wp-content/uploads/2020/05/LOGO-BTW-EDITABLE.svg"
+                            class="logo_Inicio">
 
-                        <div *ngIf="titleEnvironment" class="card-body text-center">
-                            <div class="row" style="position: relative; margin-top: -100px; padding: 10px;">
-                                <span class="letterTittleAuth" style="font-size: 40px; padding: 10%;">{{titleEnvironment}}</span>
-                            </div>
-                        </div>
+                        <br>
+                        <br>    
 
                         <h3 class="mb-4">Iniciar Sesión</h3>
 
-                        <div [ngClass]="[!f.Correo.errors ? 'wrap-input100 validate-input': 'wrap-input100 validate-input alert-validate']" data-validate="Ingrese un correo electrónico válido">
-                            <input formControlName="Correo" id="email" [ngClass]="[!loginForm.value.email ? 'input100': 'input100 has-val']" type="text" (keypress)="leavePassword($event)" (focusin)="leavePassword($event)" (keydown)="leavePassword($event)" autocomplete="off">
+                        <div [ngClass]="[!f.Correo.errors ? 'wrap-input100 validate-input': 'wrap-input100 validate-input alert-validate']"
+                            data-validate="Ingrese un correo electrónico válido">
+                            <input formControlName="Correo" id="email"
+                                [ngClass]="[!loginForm.value.email ? 'input100': 'input100 has-val']" type="text"
+                                (keypress)="leavePassword($event)" (focusin)="leavePassword($event)"
+                                (keydown)="leavePassword($event)" autocomplete="off">
                             <span class="focus-input100"></span>
                             <span class="label-input100">Correo Electrónico</span>
                         </div>
 
-                        <div [ngClass]="[!f.Contrasena.errors ? 'wrap-input100 validate-input': 'wrap-input100 validate-input alert-validate']" data-validate="Se requiere una contraseña">
-                            <input formControlName="Contrasena" id="password" [ngClass]="[!loginForm.value.Contrasena ? 'input100': 'input100 has-val']" type="password" name="pass" (keypress)="enterPassword($event)" (keydown)="enterPassword($event)" autocomplete="off">
+                        <div [ngClass]="[!f.Contrasena.errors ? 'wrap-input100 validate-input': 'wrap-input100 validate-input alert-validate']"
+                            data-validate="Se requiere una contraseña">
+                            <input formControlName="Contrasena" id="password"
+                                [ngClass]="[!loginForm.value.Contrasena ? 'input100': 'input100 has-val']"
+                                type="password" name="pass" (keypress)="enterPassword($event)"
+                                (keydown)="enterPassword($event)" autocomplete="off">
                             <span class="focus-input100"></span>
                             <span class="label-input100">Contraseña</span>
                         </div>
 
                         <br>
-                        <!---->
-                        <button id="btnLogin" [disabled]="loginForm.invalid" class="btn btn-primary mb-4" (click)="submit();">Ingresar</button>
-                        <!--<p class="mb-2 text-muted"><a [routerLink]="['/auth/reset-password']">Olvido la Contraseña?</a></p>
-                        <p class="mb-0 text-muted">No tienes una cuenta <a [routerLink]="['/auth/signup']">Registrate</a></p>-->
+                        <button id="btnLogin" [disabled]="loginForm.invalid" class="btn btn-primary mb-4"
+                            (click)="submit();">Ingresar</button>
+                        <p class="mb-2 text-muted"><a [routerLink]="['/auth/reset-password']">Olvido la Contraseña?</a></p>
+                        <p class="mb-0 text-muted">No tienes una cuenta <a [routerLink]="['/auth/signup']">Registrate</a></p>
                         <br><br>
                     </div>
                 </div>
@@ -44,13 +47,15 @@
                         <img src="../../../../assets/images/gdoc.png" class="logo_Inicio">
                         <div class="card-body text-center">
                             <div class="row" style="position: relative; margin-top: -100px; padding: 10px;">
-                                <span class="letterTittleAuth" style="font-size: 40px; padding: 10%;">Estamos actualizando</span>
+                                <span class="letterTittleAuth" style="font-size: 40px; padding: 10%;">Estamos
+                                    actualizando</span>
                             </div>
                         </div>
 
                         <div class="card-body text-center">
                             <div class="row" style="position: relative; margin-top: -100px; padding: 10px;">
-                                <span class="letterTittleAuth" style="font-size: 24px; padding: 10%;">Pronto estaremos disponibles de nuevo</span>
+                                <span class="letterTittleAuth" style="font-size: 24px; padding: 10%;">Pronto estaremos
+                                    disponibles de nuevo</span>
                             </div>
                         </div>
                     </div>
@@ -60,5 +65,63 @@
     </div>
 </div>
 
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.25)" size="large" color="#36618B" type="ball-spin-clockwise-fade-rotating"></ngx-spinner>
-<!-- <mat-spinner></mat-spinner> -->
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.25)" size="large" color="#36618B" type="ball-spin-clockwise-fade-rotating">
+</ngx-spinner>
+<mat-spinner></mat-spinner>
+<div *ngIf="loading" class="spinner-wrapper">
+    <app-spinnerglobal></app-spinnerglobal>
+</div>-->
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+
+            <form [formGroup]="loginForm" class="login100-form " autocomplete="off">
+                <div class="col-md-12" style="align-content:center;">
+                    <img src="https://btw.com.co/wp-content/uploads/2020/05/LOGO-BTW-EDITABLE.svg" style="margin-bottom:120px; margin-left:10%; text-align:center; display:block;" />
+                </div>
+
+                <span class="login100-form-title p-b-43">
+                    Inicia sesión para continuar
+                </span>
+                <br><br><br>
+
+                <div [ngClass]="[!f.Correo.errors ? 'wrap-input100 validate-input': 'wrap-input100 validate-input alert-validate']"
+                data-validate="Ingrese un correo electrónico válido">
+                <input formControlName="Correo" id="email"
+                    [ngClass]="[!loginForm.value.email ? 'input100': 'input100 has-val']" type="text"
+                    (keypress)="leavePassword($event)" (focusin)="leavePassword($event)"
+                    (keydown)="leavePassword($event)" autocomplete="off">
+                <span class="focus-input100"></span>
+                <span class="label-input100">Correo Electrónico</span>
+            </div>
+
+            <div [ngClass]="[!f.Contrasena.errors ? 'wrap-input100 validate-input': 'wrap-input100 validate-input alert-validate']"
+                data-validate="Se requiere una contraseña">
+                <input formControlName="Contrasena" id="password"
+                    [ngClass]="[!loginForm.value.Contrasena ? 'input100': 'input100 has-val']"
+                    type="password" name="pass" (keypress)="enterPassword($event)"
+                    (keydown)="enterPassword($event)" autocomplete="off">
+                <span class="focus-input100"></span>
+                <span class="label-input100">Contraseña</span>
+            </div>
+
+            <br>
+
+
+                <p></p>
+                <p></p>
+                <div class="container-login100-form-btn">
+                    <button class="btn btn-success"  style="background: #f07d00; color: white; width: 85%; height: 40px;">Iniciar</button>
+                </div>
+                <div class="flex-sb-m w-full p-t-3 p-b-32" style="margin-top: 60px;">
+
+                </div>
+                <div class="text-center p-t-46 p-b-20">
+                    <label id="lblerror" runat="server" visible="false" style="color:red;"></label>
+                </div>
+            </form>
+            <div class="login100-more"></div>
+        </div>
+    </div>
+</div>

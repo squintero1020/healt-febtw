@@ -101,7 +101,7 @@ export class BreadcrumbComponent implements OnInit {
       }
     });
     this.navigationList = result;
-    this.titleService.setTitle(title + ' | GDOC');
+    this.titleService.setTitle(title + ' | FE-BTW');
   }
 
 }

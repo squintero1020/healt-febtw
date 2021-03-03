@@ -25,7 +25,7 @@ export class LoginComponent {
   submitted: boolean = false;
   cliente$: any;
   sinllenar: boolean;
-  loading: boolean =false ;
+  loading: boolean =false;
   changePass: boolean = false;
 
   constructor(
