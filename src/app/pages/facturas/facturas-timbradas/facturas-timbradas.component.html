@@ -1,0 +1,101 @@
+<div *ngIf="loading" class="spinner-wrapper">
+    <app-sppinerloading></app-sppinerloading>
+</div>
+
+<div class="col-xl-12 col-md-12">
+    <app-card cardTitle="Informe de ventas">
+        <form [formGroup]="facturasTimbradrasForm">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="FechaI">
+                            Fecha Inicial de trimbrado(*)
+                        </label>
+                        <div class="input-group">
+                            <input [matDatepicker]="dp" class="form-control" formControlName="FechaI" autocomplete="off">
+                            <mat-datepicker #dp></mat-datepicker>
+                            <div class="input-group-append">
+                                <button class="btn
+                                    btn-outline-secondary fa fa-calendar" (click)="dp.open()" type="button" style="padding: 6px;z-index: 0;">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="FechaF">
+                            Fecha Final de trimbrado(*)
+                        </label>
+                        <div class="input-group">
+                            <input [matDatepicker]="dp1" class="form-control" formControlName="FechaF" autocomplete="off">
+                            <mat-datepicker #dp1></mat-datepicker>
+                            <div class="input-group-append">
+                                <button class="btn
+                                    btn-outline-secondary fa fa-calendar" (click)="dp1.open()" type="button" style="padding: 6px;z-index: 0;">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="InvoiceNum">
+                        Número Interno
+                    </label>
+                        <input type="text" class="form-control" formControlName="InvoiceNum" placeholder="Número interno de la factura"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="LgalNumber">
+                        Número Legal
+                    </label>
+                        <input type="text" class="form-control" formControlName="LgalNumber" placeholder="Número legal de la factura"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="InvoiceType">
+                                Tipo de documento
+                            </label>
+                            <select formControlName="InvoiceType" class="form-control">
+                                    <option value="InvoiceType">Factura de venta</option>
+                                    <option value="CreditNoteType ">Nota crédito de venta</option>
+                                    <option value="DebitNoteType  ">Nota débito de venta</option>
+                            </select>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <a class="btn btn-primary" style="color: white;width:
+                                200px;" (click)="rerender();"><i class="feather
+                                    icon-search"></i>Buscar</a>
+                </div>
+            </div>
+            <br>
+            <div class="table-responsive">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped row-border table-hover" style="width: 100%;">
+                    <tfoot>
+                        <tr class="step3AdminAR">
+                            <th><input type="text" placeholder="Buscar por" name="search-name" class="form-control" /></th>
+                            <th><input type="text" placeholder="Buscar por" name="search-name" class="form-control" /></th>
+                            <th><input type="text" placeholder="Buscar por" name="search-name" class="form-control" /></th>
+                            <th><input type="text" placeholder="Buscar por" name="search-name" class="form-control" /></th>
+                            <th><input type="text" placeholder="Buscar por" name="search-name" class="form-control" /></th>
+                            <th><input type="text" placeholder="Buscar por" name="search-name" class="form-control" /></th>
+                            <th><input type="text" placeholder="Buscar por" name="search-name" class="form-control" /></th>
+                            <th><input type="text" placeholder="Buscar por" name="search-name" class="form-control" /></th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </form>
+    </app-card>
+</div>

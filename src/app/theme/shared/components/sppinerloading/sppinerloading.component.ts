@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { __importDefault } from 'tslib';
 
 @Component({
   selector: 'app-sppinerloading',
@@ -7,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SppinerloadingComponent implements OnInit {
   @Input() message:string = '';
+  @Input() popup:boolean = false;
 
   constructor() { }
 

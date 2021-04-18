@@ -1,0 +1,139 @@
+
+<div *ngIf="loading" class="spinner-wrapper">
+    <app-sppinerloading></app-sppinerloading>
+</div>
+
+<div class="col-xl-12 col-md-12">
+    <app-card cardTitle={{tittleCard}}>
+        <label>Los campos marcados con * son obligatorios</label>
+        <br><br>
+        <form [formGroup]="UsuariosForm"> 
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Empresa (*)</label>
+                        <select formControlName="CompanyID" class="form-control" [ngClass]="{ 'is-invalid': f.CompanyID.errors }">
+                            <option>Empresa</option>
+                            </select>
+                        <div *ngIf="f.CompanyID.errors" class="invalid-feedback">
+                            <div *ngIf="f.CompanyID.errors.required">Debes seleccionar una empresa.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Usuario (*)</label>
+                        <input type="text" formControlName="Id" class="form-control" [ngClass]="{ 'is-invalid':
+                            f.Id.errors }" />
+                        <div *ngIf="f.Id.errors" class="invalid-feedback">
+                            <div *ngIf="f.Id.errors.required">Debes ingresar el id de usuario</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Documento (*)</label>
+                        <input type="text" formControlName="Documento" class="form-control" [ngClass]="{ 'is-invalid':
+                            f.Documento.errors }" />
+                        <div *ngIf="f.Documento.errors" class="invalid-feedback">
+                            <div *ngIf="f.Documento.errors.required">Debes ingresar el documento del usuario</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Nombre (*)</label>
+                        <input type="text" formControlName="Nombre" class="form-control" [ngClass]="{ 'is-invalid':
+                            f.Nombre.errors }" />
+                        <div *ngIf="f.Nombre.errors" class="invalid-feedback">
+                            <div *ngIf="f.Nombre.errors.required">Debes ingresar el nombre del usuario</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Departamento empresa (*)</label>
+                        <input type="text" formControlName="Departamento" class="form-control" [ngClass]="{ 'is-invalid':
+                            f.Departamento.errors }" />
+                        <div *ngIf="f.Departamento.errors" class="invalid-feedback">
+                            <div *ngIf="f.Departamento.errors.required">Debes ingresar el departamento de usuario</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Tipo de usuario (*)</label>
+                        <select formControlName="Rol" class="form-control" [ngClass]="{ 'is-invalid': f.CompanyID.errors }">
+                            <option>Administrador</option>
+                            </select>
+                        <div *ngIf="f.Rol.errors" class="invalid-feedback">
+                            <div *ngIf="f.Rol.errors.required">Debes seleccionar el tipo de usuario.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Correo electrónico</label>
+                        <input type="text" formControlName="Mail" class="form-control" [ngClass]="{ 'is-invalid': f.Mail.errors }" />
+                        <div *ngIf="f.Mail.errors" class="invalid-feedback">
+                            <div *ngIf="f.Mail.errors.required">Debes ingresar el correo electrónico del usuario.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Teléfono</label>
+                        <input type="text" formControlName="Telefono" class="form-control" [ngClass]="{ 'is-invalid': f.Telefono.errors }" />
+                        <div *ngIf="f.Telefono.errors" class="invalid-feedback">
+                            <div *ngIf="f.Telefono.errors.required">Debes ingresar el teléfono del usuario.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Celular</label>
+                        <input type="text" formControlName="Movil" class="form-control" [ngClass]="{ 'is-invalid': f.Movil.errors }" />
+                        <div *ngIf="f.Movil.errors" class="invalid-feedback">
+                            <div *ngIf="f.Movil.errors.required">Debes ingresar el celular del usuario.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Contraseña(*)</label>
+                        <input type="text" formControlName="Pass" class="form-control" [ngClass]="{ 'is-invalid':
+                            f.Pass.errors }" />
+                        <div *ngIf="f.Pass.errors" class="invalid-feedback">
+                            <div *ngIf="f.Pass.errors.required">Debes ingresar la contraseña de usuario</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Confirmar Contraseña(*)</label>
+                        <input type="text" formControlName="ConPass" class="form-control" [ngClass]="{ 'is-invalid':
+                            f.ConPass.errors }" />
+                        <div *ngIf="f.ConPass.errors" class="invalid-feedback">
+                            <div *ngIf="f.ConPass.errors.required">Debes confirmar la contraseña de usuario</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-primary btn-block btn-lg" [disabled]="UsuariosForm.invalid" (click)="save()">Guardar</button>
+                </div>
+            </div>
+        </form>
+    </app-card>
+</div>

@@ -1,4 +1,4 @@
-<div class="loader">
+<div [ngClass]="[!popup ? 'loader' : 'loader popup']">
     <div class="loader-inner">
         <div class="loader-line-wrap">
             <div class="loader-line"></div>
@@ -13,8 +13,11 @@
             <div class="loader-line"></div>
         </div>
 
-        <div>
-            <img class="imagen" src="../../../../../assets/images/gdoc_logo.png" />
+        <div class="imagen">
+            <img src="./../../../../../assets/images/logo_btw.png" style="width: 30%;
+            margin-left: -58%;
+            margin-top: 6%;
+            opacity: 90%; text-align: center;" />
         </div>
     </div>
 </div>
@@ -29,6 +32,7 @@
         </div>
     </div>
 </div>
+
 
 
 

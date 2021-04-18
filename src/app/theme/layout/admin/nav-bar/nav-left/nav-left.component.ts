@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalService } from 'src/app/shared/services/local.service';
 import { AuthService } from '../../../../../shared/services/auth.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class NavLeftComponent implements OnInit {
   ClienteActual: any = "Cargando..."
 
   constructor(
-    private authService: AuthService,
+    private LocalStorage: LocalService,
   ) { }
 
   ngOnInit() {
@@ -19,16 +20,7 @@ export class NavLeftComponent implements OnInit {
   }
 
   loadCliente(){
-    this.authService.getCompany()
-    .then((res:any)=>{
-      if(res.success){
-        this.ClienteActual=res.result
-
-      }else{
-        //
-      }
-    })
-    .catch(console.error);
+    this.ClienteActual = this.LocalStorage.getJsonValue('empresa');
   }
 
 }

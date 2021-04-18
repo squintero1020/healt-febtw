@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { LocalService } from './local.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,17 +8,18 @@ import { Injectable } from '@angular/core';
 export class UsuariosService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private LocalStorage : LocalService
   ) { }
 
-  //OBTENER LINEAS DE FACTURA
-  getByCompany() {
+
+  getByCompany(companyid, nit) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      //'Authorization': 'bearer ' + sessionStorage.getItem('fgh0x01b4#8')
+      'Authorization': `Bearer ${this.LocalStorage.getJsonValue('token')}`
     });
     const promise = new Promise((resolve, reject) => {
-      const apiURL = `api/Usuarios/GetByCompany?ClienteId=${localStorage.getItem("clienteId")}`;
+      const apiURL = `api/Usuarios/GetByCompany?companyid=${companyid}&nit=${nit}`;
       this.http
         .get<any[]>(apiURL, { headers: headers })
         .toPromise()
@@ -34,38 +36,36 @@ export class UsuariosService {
     return promise;
   }
 
-    //OBTENER LINEAS DE FACTURA
-    getByID(id) {
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        //'Authorization': 'bearer ' + sessionStorage.getItem('fgh0x01b4#8')
-      });
-      const promise = new Promise((resolve, reject) => {
-        const apiURL = `api/Usuarios/GetByID?ClienteId=${localStorage.getItem("clienteId")}&UsuarioId=${id}`;
-        this.http
-          .get<any[]>(apiURL, { headers: headers })
-          .toPromise()
-          .then((res: any) => {
-            // Success
-            resolve(res);
-          },
-            err => {
-              // Error
-              reject(err);
-            }
-          );
-      });
-      return promise;
-    }
+  getByID(id,companyid,nit) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.LocalStorage.getJsonValue('token')}`
+    });
+    const promise = new Promise((resolve, reject) => {
+      const apiURL = `api/Usuarios/GetByID?id=${id}&companyid=${companyid}&nit=${nit}`;
+      this.http
+        .get<any[]>(apiURL, { headers: headers })
+        .toPromise()
+        .then((res: any) => {
+          // Success
+          resolve(res);
+        },
+          err => {
+            // Error
+            reject(err);
+          }
+        );
+    });
+    return promise;
+  }
 
-   //GUARDAR USUARIO
    Add(item) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      //'Authorization': 'bearer ' + sessionStorage.getItem('fgh0x01b4#8')
+      'Authorization': `Bearer ${this.LocalStorage.getJsonValue('token')}`
     });
     const promise = new Promise((resolve, reject) => {
-      const apiURL = `api/Usuarios/Add?ClienteId=${localStorage.getItem("clienteId")}`;
+      const apiURL = `api/Usuarios/Add`;
       this.http
         .post<any[]>(apiURL,JSON.stringify(item), { headers: headers })
         .toPromise()
@@ -82,62 +82,38 @@ export class UsuariosService {
     return promise;
   }
 
-   //GUARDAR USUARIO
-   Update(item) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      //'Authorization': 'bearer ' + sessionStorage.getItem('fgh0x01b4#8')
-    });
-    const promise = new Promise((resolve, reject) => {
-      const apiURL = `api/Usuarios/Update?ClienteId=${localStorage.getItem("clienteId")}`;
-      this.http
-        .put<any[]>(apiURL,JSON.stringify(item), { headers: headers })
-        .toPromise()
-        .then((res: any) => {
-          // Success
-          resolve(res);
-        },
-          err => {
-            // Error
-            reject(err);
-          }
-        );
-    });
-    return promise;
+  Update(item) {
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${this.LocalStorage.getJsonValue('token')}`
+  });
+  const promise = new Promise((resolve, reject) => {
+    const apiURL = `api/Usuario/Update`;
+    this.http
+      .put<any[]>(apiURL,JSON.stringify(item), { headers: headers })
+      .toPromise()
+      .then((res: any) => {
+        // Success
+        resolve(res);
+      },
+        err => {
+          // Error
+          reject(err);
+        }
+      );
+  });
+  return promise;
   }
 
-  getRoles() {
+  delete(id,companyid,nit) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      //'Authorization': 'bearer ' + sessionStorage.getItem('fgh0x01b4#8')
+      'Authorization': `Bearer ${this.LocalStorage.getJsonValue('token')}`
     });
     const promise = new Promise((resolve, reject) => {
-      const apiURL = `api/Roles/GetRoles`;
+      const apiURL = `api/Usuarios/Delete?id=${id}&companyid=${companyid}&nit=${nit}`;
       this.http
-        .get<any[]>(apiURL, { headers: headers })
-        .toPromise()
-        .then((res: any) => {
-          // Success
-          resolve(res);
-        },
-          err => {
-            // Error
-            reject(err);
-          }
-        );
-    });
-    return promise;
-  }
-
-  ChangePass(item) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      //'Authorization': 'bearer ' + sessionStorage.getItem('fgh0x01b4#8')
-    });
-    const promise = new Promise((resolve, reject) => {
-      const apiURL = `api/Usuarios/ChangePass`;
-      this.http
-        .put<any[]>(apiURL, JSON.stringify(item), { headers: headers })
+        .delete<any[]>(apiURL, { headers: headers })
         .toPromise()
         .then((res: any) => {
           // Success

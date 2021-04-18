@@ -6,7 +6,7 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'default',
+        path: '',
         loadChildren: () => import('./default/default.module').then(m => m.DefaultModule)
       },
     ]

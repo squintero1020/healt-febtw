@@ -4,35 +4,30 @@ import { map } from 'rxjs/operators'
 import { environment } from '../../../environments/environment';
 import { UsuarioLoginModel } from '../models/usuario-login';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
+import { LocalService } from './local.service';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private url = environment.baseURL_identityService;
+  private url = environment.baseURL;
   userToken: string = '';
-
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': 'Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization'
-    })
-  };
-
   code: any;
   token: any;
 
-  constructor(private http: HttpClient,
+  constructor(
+    private LocalStorage: LocalService,
+    private http: HttpClient,
     public router: Router) {
     this.leerToken()
   }
 
   logOut() {
-    localStorage.clear()
+    localStorage.clear();
+    sessionStorage.clear();
     this.router.navigateByUrl('/login')
   }
 
@@ -44,10 +39,9 @@ export class AuthService {
     };
 
     return this.http.post(
-      `${this.url}authenticate`, authData
+      `${this.url}Login/Login`, authData
     ).pipe(
       map(resp => {
-
         this.token = resp;
         this.guardarToken(resp);
         return resp;
@@ -55,16 +49,15 @@ export class AuthService {
     )
   }
 
-  private guardarToken(idToken) {
-    localStorage.clear()
-    this.userToken = `Bearer ${idToken.token}`
-    localStorage.setItem('usuarioId', idToken.usuarioId)
-    localStorage.setItem('token', this.userToken);
-    localStorage.setItem('nombres', idToken.nombres)
-    localStorage.setItem('clienteId', idToken.clienteId)
-    localStorage.setItem('correo', idToken.correo)
-    localStorage.setItem('initialized', idToken.initialized)
-    localStorage.setItem('rolId', idToken.rolId)
+  private guardarToken(response) {
+    if (!response.success)
+      return;
+    localStorage.clear();
+    sessionStorage.clear();
+    this.LocalStorage.setJsonValue('usuario', response.result[0][1]);
+    this.LocalStorage.setJsonValue('empresa', response.result[1][1]);
+    this.LocalStorage.setJsonValue('token', response.result[2][1].access_token);
+    this.LocalStorage.setJsonValue('usuarioid', response.result[0][1].UsuarioId);
 
     let hoy = new Date();
     hoy.setSeconds(3600)
@@ -73,19 +66,28 @@ export class AuthService {
 
 
   leerToken() {
-
-    if (localStorage.getItem('token')) {
-      this.userToken = localStorage.getItem('token');
-    }else {
-        this.userToken = '';
-      }
-      return this.userToken
+    if (this.LocalStorage.getJsonValue('token')) {
+      this.userToken = this.LocalStorage.getJsonValue('token');
+    } else {
+      this.userToken = '';
+    }
+    return this.userToken
   }
 
-  estaAutenticado(): boolean{
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    if (this.estaAutenticado() !== true) {
+      Swal.fire('Error', 'No tienes acceso', 'error');
+      this.router.navigate([''])
+    }
+    return true;
+  }
+  
+  estaAutenticado(): boolean {
     this.leerToken();
-    
-    if(this.userToken.length < 20 || localStorage.getItem("initialized") === 'true'){
+
+    if (this.userToken.length < 20 || localStorage.getItem("initialized") === 'true') {
       return false;
     }
 
@@ -93,68 +95,11 @@ export class AuthService {
     const expiraDate = new Date();
     expiraDate.setTime(expira);
 
-    if(expiraDate > new Date()){
+    if (expiraDate > new Date()) {
       return true;
-    }else{
+    } else {
       return false
     }
 
   }
-
-  getCompany() {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      //'Authorization': 'bearer ' + sessionStorage.getItem('fgh0x01b4#8')
-    });
-    const promise = new Promise((resolve, reject) => {
-      const apiURL = `api/Clientes/GetByID?ClienteId=${localStorage.getItem("clienteId")}`;
-      this.http
-        .get<any[]>(apiURL, { headers: headers })
-        .toPromise()
-        .then((res: any) => {
-          // Success
-          resolve(res);
-        },
-          err => {
-            // Error
-            reject(err);
-          }
-        );
-    });
-    return promise;
-  }
-
-  imprimeHeader(){
-    return   {
-      'authorization': this.userToken,
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': 'Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization'
-    }
-  }
-
-  CMD(){
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      //'Authorization': 'bearer ' + sessionStorage.getItem('fgh0x01b4#8')
-    });
-    const promise = new Promise((resolve, reject) => {
-      const apiURL = `/api/CMD/InitialCMD?ClienteId=${localStorage.getItem("clienteId")}`;
-      this.http
-        .get<any[]>(apiURL, { headers: headers })
-        .toPromise()
-        .then((res: any) => {
-          // Success
-          resolve(res);
-        },
-          err => {
-            // Error
-            reject(err);
-          }
-        );
-    });
-    return promise;
-  }
-
 }

@@ -3,9 +3,9 @@
     <a class="mobile-menu" id="mobile-collapse1" href="javascript:" (click)="this.onNavCollapsedMob.emit();"><span></span></a>
     <a [routerLink]="['/dashboard/default']" class="b-brand">
       <div class="b-bg">
-        <img src="../../../../../assets/images/gdoc_logo.png" style="width: 110%;">
+        <img src="../../../../../assets/images/logo_btw.png" style="width: 110%;">
       </div>
-      <span class="b-title">{{ClienteActual.nombre}}</span>
+      <span class="b-title">{{ClienteActual.RazonSocial}}</span>
     </a>
   </div>
   <a class="mobile-menu" [ngClass]="{'on' : this.menuClass}" id="mobile-header" href="javascript:" (click)="toggleMobOption()"><i class="feather icon-more-horizontal"></i></a>
@@ -13,4 +13,9 @@
     <app-nav-left class="mr-auto" [style.display]="this.headerStyle"></app-nav-left>
     <app-nav-right class="ml-auto"></app-nav-right>
   </div>
+  <div class="row" style="background-color: #fff;">
+    <div style="margin-top: 1%;margin-left: 5%;">
+        <app-breadcrumb></app-breadcrumb>
+    </div>
+</div>
 </header>

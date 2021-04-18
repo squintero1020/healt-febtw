@@ -1,0 +1,63 @@
+<div *ngIf="loading" class="spinner-wrapper popup">
+    <app-sppinerloading [popup]="true"></app-sppinerloading>
+</div>
+<button class="btn btn-icon fa fa-chevron-left closeMenu_popup" (click)="onClickCloseModal()"></button>
+
+<app-card *ngIf="parent=='InvcHead'" cardTitle="      Opciones {{titulo1}}" [options]="false" [cartTabs]='true' [back]='true'>
+    <div style="margin-top:5%;margin-left: 10%;">
+        <div class="taskboard-right-revision user-box">
+            <div class="media cuadro_popup_principal">
+                <div class="media-left">
+                    <button [ngClass]="[option1 ? 'btn btn-icon btn-rounded btn-outline-success fa fa-thumbs-up' : 'btn btn-icon btn-rounded btn-outline-danger fa fa-thumbs-down']" (click)="onClickOption1InvcHead()"></button>
+                </div>
+                <div class="media-left">
+                    <div class="chat-header f-w-400 mb-1 titulo_popup_opciones" style="margin-top: 10px;">ENVÍO DIAN</div>
+                </div>
+            </div>
+            <div class="media cuadro_popup_principal">
+                <div class="media-left">
+                    <button [disabled]="param2==='false'" [ngClass]="[option2 ? 'btn btn-icon btn-rounded btn-outline-success fa fa-thumbs-up' : 'btn btn-icon btn-rounded btn-outline-danger fa fa-thumbs-down']" (click)="onClickOption2InvcHead()"></button>
+                </div>
+                <div class="media-left">
+                    <div class="chat-header f-w-400 mb-1 titulo_popup_opciones" style="margin-top: 10px;">ACUSE DE RECIBIDO</div>
+                </div>
+            </div>
+            <div *ngIf="noshow1" class="media cuadro_popup_principal">
+                <div class="media-left">
+                    <button [disabled]="option3" class="btn btn-icon btn-rounded btn-outline-primary fa fa-file-pdf" (click)="onClickOption3InvcHead()"></button>
+                </div>
+                <div class="media-left">
+                    <div class="chat-header f-w-400 mb-1 titulo_popup_opciones">PDF</div>
+                    <p class="chat-header text-muted">Puede generar el PDF</p>
+                </div>
+            </div>
+            <div *ngIf="noshow1" class="media cuadro_popup_principal">
+                <div class="media-left">
+                    <button [disabled]="option4" class="btn btn-icon btn-rounded btn-outline-primary fa fa-book-open" (click)="onClickOption4InvcHead()"></button>
+                </div>
+                <div class="media-left">
+                    <div class="chat-header titulo_popup_opciones">XML</div>
+                    <p class="chat-header  text-muted">Puedes ver XML</p>
+                </div>
+            </div>
+            <div class="media cuadro_popup_principal">
+                <div class="media-left">
+                    <button [disabled]="option6" class="btn btn-icon btn-rounded btn-outline-primary fa fa-chart-line" (click)="onClickOption6InvcHead()"></button>
+                </div>
+                <div class="media-left">
+                    <div class="chat-header f-w-400 mb-1 titulo_popup_opciones">Validar XML</div>
+                    <p class="chat-header text-muted">Puedes varificar si el XML, cumple las reglas</p>
+                </div>
+            </div>
+        </div>
+        <div class="media cuadro_popup_principal" style="width: 100%;">
+            <div class="media-left">
+                <button [disabled]="option7" class="btn btn-icon btn-rounded btn-outline-primary fa fa-reply-all" (click)="onClickOption7InvcHead()"></button>
+            </div>
+            <div class="media-left">
+                <div class="chat-header f-w-400 mb-1 titulo_popup_opciones">Reenviar documento</div>
+                <p class="chat-header text-muted">Puedes reenviar el PDF de una factura electrónica</p>
+            </div>
+        </div>
+    </div>
+</app-card>

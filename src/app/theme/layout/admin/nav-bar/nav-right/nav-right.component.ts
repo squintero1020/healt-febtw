@@ -4,6 +4,7 @@ import { animate, style, transition, trigger } from "@angular/animations";
 import { DattaConfig } from "../../../../../app-config";
 import { AuthService } from "../../../../../shared/services/auth.service";
 import { CambiarContrasenaComponent } from "src/app/components/modales/cambiar-contrasena/cambiar-contrasena.component";
+import { LocalService } from "src/app/shared/services/local.service";
 
 @Component({
   selector: "app-nav-right",
@@ -38,7 +39,12 @@ export class NavRightComponent implements OnInit, DoCheck {
   public dattaConfig: any;
   public UsuarioActual: any;
 
-  constructor(config: NgbDropdownConfig, public authService: AuthService, public modal: NgbModal) {
+  constructor(
+    config: NgbDropdownConfig, 
+    private LocalStorage : LocalService,
+    public authService: AuthService, 
+    public modal: NgbModal
+    ) {
     config.placement = "bottom-right";
     this.visibleUserList = false;
     this.chatMessage = false;
@@ -46,7 +52,7 @@ export class NavRightComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
-    this.UsuarioActual = localStorage.getItem("nombres");
+    this.UsuarioActual = this.LocalStorage.getJsonValue("usuario");
   }
 
   openModalChangePassword() {

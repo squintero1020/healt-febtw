@@ -67,27 +67,6 @@ export class CambiarContrasenaComponent implements OnInit {
     this.changePassForm.controls['oldPassword'].patchValue(this.form.value.currPassword)
     this.changePassForm.controls['newPassword'].patchValue(this.form.value.newPassword)
 
-    this.apiUsuariosService
-      .ChangePass(this.changePassForm.value)
-      .then((res: any) => {
-        console.log(res);
-        if(res.success){
-          Swal.fire(
-            'Bien hecho',
-            res.message + ' Por favor inicia sesión de nuevo',
-            'success'
-          )
-          this.auth.logOut();
-        }else{
-          Swal.fire(
-            'Error',
-            'Hubo un error al guardar: '+res.message,
-            'error'
-          )
-          this.auth.logOut();
-        }
-      })
-      .catch(console.error);
   }
 
   handSuccessFullSave(form) {

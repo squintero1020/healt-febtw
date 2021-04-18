@@ -60,6 +60,7 @@ export class NavItemComponent implements OnInit {
         if (this.location['_baseHref']) {
           current_url = this.location['_baseHref'] + this.location.path();
         }
+
         const link = "a.nav-link[ href='" + current_url + "' ]";
         const ele = document.querySelector(link);
         if (ele !== null && ele !== undefined) {

@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FacturasRoutingModule } from './facturas-routing.module';
-import { FacturasComponent } from './facturas.component';
-import { SharedModule } from '../../theme/shared/shared.module';
+import { FacturasTimbradasComponent } from './facturas-timbradas/facturas-timbradas.component';
+import { AsociarAdjuntoComponent } from './asociar-adjunto/asociar-adjunto.component';
+
 
 
 @NgModule({
-  declarations: [FacturasComponent],
+  declarations: [],
   imports: [
     CommonModule,
-    FacturasRoutingModule,
-    SharedModule,
+    FacturasRoutingModule
   ]
 })
 export class FacturasModule { }

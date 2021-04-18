@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { LocalService } from 'src/app/shared/services/local.service';
 import {DattaConfig} from '../../../../app-config';
 import { AuthService } from '../../../../shared/services/auth.service';
 
@@ -18,7 +19,7 @@ export class NavBarComponent implements OnInit {
   ClienteActual: any = "Cargando...";
 
   constructor(
-    private authService: AuthService
+    private LocalStorage: LocalService
   ) {
     this.dattaConfig = DattaConfig.config;
     this.navCollapsedMob = false;
@@ -33,16 +34,7 @@ export class NavBarComponent implements OnInit {
   }
 
   loadCliente(){
-    this.authService.getCompany()
-    .then((res:any)=>{
-      if(res.success){
-        this.ClienteActual=res.result
-
-      }else{
-        //
-      }
-    })
-    .catch(console.error);
+    this.ClienteActual = this.LocalStorage.getJsonValue('empresa');
   }
 
   toggleMobOption() {

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng-datta-able": {
+    "febtw_page": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ng-datta-able",
+            "outputPath": "dist/febtw_page",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -52,7 +52,8 @@
               "node_modules/datatables.net-buttons/js/buttons.print.js",
               "node_modules/datatables.net-colreorder/js/dataTables.colReorder.js",
               "node_modules/datatables.net-responsive/js/dataTables.responsive.js",
-              "node_modules/datatables.net-select/js/dataTables.select.js"
+              "node_modules/datatables.net-select/js/dataTables.select.js",
+              "node_modules/crypto-js/crypto-js.js"
             ]
           },
           "configurations": {
@@ -89,12 +90,12 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ng-datta-able:build",
+            "browserTarget": "febtw_page:build",
             "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ng-datta-able:build:production",
+              "browserTarget": "febtw_page:build:production",
               "proxyConfig": "proxy.conf.json"
             }
           }
@@ -102,7 +103,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ng-datta-able:build"
+            "browserTarget": "febtw_page:build"
           }
         },
         "test": {
@@ -140,18 +141,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ng-datta-able:serve"
+            "devServerTarget": "febtw_page:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ng-datta-able:serve:production"
+              "devServerTarget": "febtw_page:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "ng-datta-able",
+  "defaultProject": "febtw_page",
   "cli": {
     "analytics": "afb2665e-c71d-4a27-88bc-5b5ac8bfbd14"
   }

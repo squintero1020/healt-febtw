@@ -15,7 +15,7 @@ export class SignalRServiceService {
 
   private hubConnection: signalR.HubConnection;
 
-  readonly apiUrl = environment.baseURL_GDOCService;
+  readonly apiUrl = environment.baseURL;
  
   constructor(private http: HttpClient) {
     this.createConnection();

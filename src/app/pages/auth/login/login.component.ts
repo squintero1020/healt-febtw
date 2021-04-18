@@ -6,8 +6,8 @@ import Swal from 'sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CambiarContrasenaComponent } from '../../../components/modales/cambiar-contrasena/cambiar-contrasena.component';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { SignalRServiceService } from 'src/app/shared/services/signal-rservice.service';
-import { Observable } from 'rxjs';
+import { MenuService } from 'src/app/shared/services/menu.service';
+import { LocalService } from 'src/app/shared/services/local.service';
 
 
 
@@ -18,6 +18,8 @@ import { Observable } from 'rxjs';
 })
 export class LoginComponent {
 
+  public navigation:any;
+  loading: boolean =false;
   titleEnvironment:string='';
   updates=false;
 
@@ -25,7 +27,6 @@ export class LoginComponent {
   submitted: boolean = false;
   cliente$: any;
   sinllenar: boolean;
-  loading: boolean =false;
   changePass: boolean = false;
 
   constructor(
@@ -34,6 +35,8 @@ export class LoginComponent {
     private formBuilder: FormBuilder,
     private auth: AuthService,
     private modal : NgbModal,
+    private apiMenuService : MenuService, 
+    private LocalStorage : LocalService,
     private spinner: NgxSpinnerService,
 
   ) { }
@@ -41,12 +44,12 @@ export class LoginComponent {
   ngOnInit(){
    
     if(this.auth.estaAutenticado()){
-      this.router.navigateByUrl('/ccdoc')
+      this.router.navigateByUrl('/app')
     }
 
     this.loginForm = this.formBuilder.group({
-      Correo:['', Validators.required],
-      Contrasena:['', Validators.required],
+      userid:['1020414845', Validators.required],
+      password:['14CC141F7412107911C9', Validators.required],
     });
   }
 
@@ -61,34 +64,27 @@ export class LoginComponent {
   }
 
   submit(){
-    this.spinner.show();
     this.loading = true;
-    this.loginForm.value.ClienteId = parseInt( this.loginForm.value.ClienteId)
-    this.submitted = true;
-    if(this.loginForm.status === "INVALID"){
-      this.sinllenar = true
-      this.spinner.hide();
-      return
-    }
     this.auth.logIn(this.loginForm.value).subscribe(
       (resp: any)=>{
-        this.spinner.hide();
+
         this.loading = false
-        console.log(resp);
-        if(resp.initialized){
-          console.log('openModal')
-          this.openModalChangePassword()
-          return
-        }else
-        this.delay(2000);
-        this.auth.CMD().then((res: any)=>{
-          console.log(res.message);
-          
+        if(!resp.success){
+          Swal.fire('Notificación',resp.message,'warning');
+          return;
+        }
+        this.loading = true;
+        this.apiMenuService.getByUsuarioID()
+        .then((resp:any)=>{
+          this.loading=false;
+          if(resp.success){
+            this.navigation = resp.result;
+            this.LocalStorage.setJsonValue('navigation',JSON.stringify(this.navigation));
+            this.router.navigateByUrl('/app')
+          }
         })
-        this.router.navigateByUrl('/ccdoc')
-        
+        .catch(console.error)
       },(err)=>{
-        this.spinner.hide();
         this.loading = false
         if(err)
         Swal.fire(
@@ -113,6 +109,7 @@ export class LoginComponent {
     )
     modal.componentInstance.parametros = "";
   }
+
   handleModalChangePassword(response){
     console.log(response);
   }

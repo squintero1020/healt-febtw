@@ -1,0 +1,38 @@
+.titulo_popup_opciones {
+    color: black;
+    font-weight: bold;
+    font: outline;
+    font-size: 16px;
+}
+
+.text-muted {
+    color: black;
+}
+
+.closeMenu_popup {
+    position: fixed;
+    z-index: 1;
+    top: 38px;
+    color: white;
+    animation: slide1 1s ease-in-out infinite;
+}
+
+@media only screen and (max-width: 375px) {
+    .closeMenu_popup {
+        position: fixed;
+        z-index: 1;
+        top: 19px;
+        color: white;
+        animation: slide1 1s ease-in-out infinite;
+    }
+}
+
+@keyframes slide1 {
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(10px, 0);
+    }
+}

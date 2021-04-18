@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {NavigationItem} from '../../navigation';
 import {animate, group, state, style, transition, trigger} from '@angular/animations';
 import {DattaConfig} from '../../../../../../app-config';
+import {formatNumber, Location} from '@angular/common';
 
 @Component({
   selector: 'app-nav-collapse',
@@ -25,13 +26,75 @@ export class NavCollapseComponent implements OnInit {
   public dattaConfig: any;
   public themeLayout: string;
 
-  constructor() {
+  constructor(private location: Location) {
     this.visible = false;
     this.dattaConfig = DattaConfig.config;
     this.themeLayout = this.dattaConfig['layout'];
   }
 
   ngOnInit() {
+    // at reload time active and trigger link
+    let current_url = this.location.path();
+    if (this.location['_baseHref']) {
+      current_url = this.location['_baseHref'] + this.location.path();
+    }
+    const link = "a.nav-link[ href='" + current_url + "' ]";
+    const ele = document.querySelector(link);
+    if (ele !== null && ele !== undefined) {
+      const parent = ele.parentElement;
+      const up_parent = parent.parentElement.parentElement;
+      const last_parent = up_parent.parentElement;
+      if (parent.classList.contains('pcoded-hasmenu')) {
+        if (this.dattaConfig['layout'] === 'vertical') {
+          parent.classList.add('pcoded-trigger');
+        }
+        parent.classList.add('active');
+      } else if(up_parent.classList.contains('pcoded-hasmenu')) {
+        if (this.dattaConfig['layout'] === 'vertical') {
+          up_parent.classList.add('pcoded-trigger');
+        }
+        up_parent.classList.add('active');
+      } else if (last_parent.classList.contains('pcoded-hasmenu')) {
+        if (this.dattaConfig['layout'] === 'vertical') {
+          last_parent.classList.add('pcoded-trigger');
+        }
+        last_parent.classList.add('active');
+      }
+    }
+    else{
+      let finally_url = '';
+      let url = current_url.split('/');
+      let i = 0;
+      url.forEach(a => {
+        if(i < 3)
+          if(a !== '')
+            finally_url += '/'+a;
+        i++;
+      });
+      const link = "a.nav-link[ href='" + finally_url + "' ]";
+      const ele = document.querySelector(link);
+      if (ele !== null && ele !== undefined) {
+        const parent = ele.parentElement;
+        const up_parent = parent.parentElement.parentElement;
+        const last_parent = up_parent.parentElement;
+        if (parent.classList.contains('pcoded-hasmenu')) {
+          if (this.dattaConfig['layout'] === 'vertical') {
+            parent.classList.add('pcoded-trigger');
+          }
+          parent.classList.add('active');
+        } else if(up_parent.classList.contains('pcoded-hasmenu')) {
+          if (this.dattaConfig['layout'] === 'vertical') {
+            up_parent.classList.add('pcoded-trigger');
+          }
+          up_parent.classList.add('active');
+        } else if (last_parent.classList.contains('pcoded-hasmenu')) {
+          if (this.dattaConfig['layout'] === 'vertical') {
+            last_parent.classList.add('pcoded-trigger');
+          }
+          last_parent.classList.add('active');
+        }
+      }
+    }
   }
 
   navCollapse(e) {

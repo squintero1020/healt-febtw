@@ -1,0 +1,47 @@
+<div *ngIf="loading" class="spinner-wrapper popup">
+    <app-sppinerloading></app-sppinerloading>
+</div>
+
+<form id="modaldetalle">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button (click)="closeInvoiceViewModal();" type="button" class="close" data-dismiss="modal"
+                aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h3 class="modal-title ng-binding" id="modal-title">
+                <span class="fa fa-fw fa-list"></span> Log de transacción&gt;
+            </h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <div class="well" style="margin-bottom: 0;">
+                <form [formGroup]="facturasTimbradrasForm">
+                    <div class="conainter">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <label style="font-size: 24px; font-weight: bold;">Correo de envío:</label>
+                                </div>
+                                <div class="row">
+                                    <span style="font-size: 24px;">{{ facturasTimbradrasForm.value.Empresa_EmailFE }}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <label style="font-size: 24px; font-weight: bold;">Fecha de envío:</label>
+                                </div>
+                                <div class="row">
+                                    <span style="font-size: 24px;">{{ facturasTimbradrasForm.value.FechaEnvioCliente | date
+                                        : 'yyyy-MM-dd'}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <textarea readonly style="width: 100%; height: 250px;" formControlName="ObservacionCliente"></textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</form>

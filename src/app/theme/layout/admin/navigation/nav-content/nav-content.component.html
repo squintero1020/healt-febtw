@@ -1,4 +1,9 @@
-<perfect-scrollbar *ngIf="this.dattaConfig['layout'] === 'vertical'" [exclude]="'#mobile-collapse1'" (clickOutside)="navMob()" id="nav-ps-datta" ngClass="datta-scroll" [style.max-width]="'300px'" [style.max-height]="'calc(100vh - 70px)'" [usePSClass]="'datta'" [disabled]="null" [autoPropagation] ="true">
+<div *ngIf="loading" class="spinner-wrapper">
+  <app-sppinerloading></app-sppinerloading>
+</div>
+
+
+<perfect-scrollbar *ngIf="this.dattaConfig['layout'] === 'vertical'" [exclude]="'#mobile-collapse1'" (clickOutside)="navMob()" id="nav-ps-datta" ngClass="datta-scroll" [style.max-width]="'300px'" [style.max-height]="'calc(100vh - 70px)'" [style.top]="'30px'" [usePSClass]="'datta'" [disabled]="null" [autoPropagation] ="true">
   <div class="navbar-content">
     <ul class="nav pcoded-inner-navbar" (clickOutside)="fireOutClick()" (mouseleave)="navMob()">
       <ng-container *ngFor="let item of navigation">

@@ -31,9 +31,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptorService } from './shared/services/auth-interceptor.service';
 import { CambiarContrasenaComponent } from './components/modales/cambiar-contrasena/cambiar-contrasena.component';
-import { AgregarComentariosFacturaComponent } from './components/modales/agregar-comentarios-factura/agregar-comentarios-factura.component';
-import { CambiarFlujoComponent } from './components/modales/cambiar-flujo/cambiar-flujo.component';
 import { SpinnerglobalComponent } from './theme/shared/components/spinnerglobal/spinnerglobal.component';
+import { NaxExtNavigation } from './navext/nax-evt-navigation';
+import { DatePipe } from '@angular/common';
+import { OptionMenuComponent } from './components/modales/option-menu/option-menu.component';
+import { LogDianComponent } from './components/modales/log-dian/log-dian.component';
+import { LogClienteComponent } from './components/modales/log-cliente/log-cliente.component';
 
 @NgModule({
   declarations: [
@@ -57,8 +60,9 @@ import { SpinnerglobalComponent } from './theme/shared/components/spinnerglobal/
     ChatMsgComponent,
     ConfigurationComponent,
     CambiarContrasenaComponent,
-    AgregarComentariosFacturaComponent,
-    CambiarFlujoComponent,
+    OptionMenuComponent,
+    LogDianComponent,
+    LogClienteComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -75,14 +79,16 @@ import { SpinnerglobalComponent } from './theme/shared/components/spinnerglobal/
     ReactiveFormsModule
   ],
   providers: [
-    AuthService,
-    AuthGuard,
-    NavigationItem,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
-    }
+    },
+    AuthService,
+    AuthGuard,
+    NavigationItem,
+    NaxExtNavigation,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

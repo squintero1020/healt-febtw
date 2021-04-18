@@ -2,6 +2,7 @@ import {AfterViewInit, Component, ElementRef, EventEmitter, NgZone, OnInit, Outp
 import {NavigationItem} from '../navigation';
 import {DattaConfig} from '../../../../../app-config';
 import {Location} from '@angular/common';
+import { LocalService } from 'src/app/shared/services/local.service';
 
 @Component({
   selector: 'app-nav-content',
@@ -11,8 +12,9 @@ import {Location} from '@angular/common';
 export class NavContentComponent implements OnInit, AfterViewInit {
   @Output() onNavCollapsedMob = new EventEmitter();
 
+  loading:boolean=false;
   public dattaConfig: any;
-  public navigation: any;
+  public navigation : any;
   public prevDisabled: string;
   public nextDisabled: string;
   public contentWidth: number;
@@ -23,11 +25,15 @@ export class NavContentComponent implements OnInit, AfterViewInit {
   @ViewChild('navbarContent', {static: false}) navbarContent: ElementRef;
   @ViewChild('navbarWrapper', {static: false}) navbarWrapper: ElementRef;
 
-  constructor(public nav: NavigationItem, private zone: NgZone, private location: Location) {
+  constructor(
+    public nav: NavigationItem, 
+    private zone: NgZone,
+    private location: Location,
+    private LocalStorage : LocalService,
+    ) {
     this.dattaConfig = DattaConfig.config;
     this.windowWidth = window.innerWidth;
 
-    this.navigation = this.nav.get();
     this.prevDisabled = 'disabled';
     this.nextDisabled = '';
     this.scrollWidth = 0;
@@ -35,7 +41,10 @@ export class NavContentComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    if (this.windowWidth < 992) {
+
+    this.navigation = JSON.parse(this.LocalStorage.getJsonValue('navigation'));
+
+       if (this.windowWidth < 992) {
       this.dattaConfig['layout'] = 'vertical';
       setTimeout(() => {
         document.querySelector('.pcoded-navbar').classList.add('menupos-static');
@@ -82,6 +91,8 @@ export class NavContentComponent implements OnInit, AfterViewInit {
     if (this.location['_baseHref']) {
       current_url = this.location['_baseHref'] + this.location.path();
     }
+    console.log(current_url);
+    
     const link = "a.nav-link[ href='" + current_url + "' ]";
     const ele = document.querySelector(link);
     if (ele !== null && ele !== undefined) {

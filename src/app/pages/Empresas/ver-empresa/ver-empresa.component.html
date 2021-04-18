@@ -1,0 +1,320 @@
+<div *ngIf="loading" class="spinner-wrapper">
+    <app-sppinerloading></app-sppinerloading>
+</div>
+<div class="col-xl-12 col-md-12">
+    <app-card cardTitle="Ver Empresa" [cartTabs]='true'>
+        <!-- FILA PRINCIPAL -->
+        <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+            <mat-tab label="Información Empresa" style="padding: 1%;">
+                <form [formGroup]="BusinessForm">
+                    <div class="container"
+                        style="padding: 30px; min-height: 450px;max-height: 450px; overflow-y: scroll;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        NIT (Sin digito de verificacion)
+                                    </label>
+                                    <input readonly type="text" class="form-control" formControlName="NIT" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        Company ID
+                                    </label>
+                                    <input readonly type="text" class="form-control" formControlName="CompanyID" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="checkbox checkbox-primary checkbox-fill d-inline">
+                                        <input type="checkbox" id="switch-a-2" formControlName="SyncERP">
+                                        <label for="switch-a-2" class="cr"></label>
+                                    </div>
+                                    <label>Syncronizacion con EPICOR ERP</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        Razon Social
+                                    </label>
+                                    <input type="text" class="form-control" formControlName="RazonSocial" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        Ciudad
+                                    </label>
+                                    <input type="text" class="form-control" formControlName="Ciudad" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        Dirección
+                                    </label>
+                                    <input type="text" class="form-control" formControlName="Direccion" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        Télefono
+                                    </label>
+                                    <input type="text" class="form-control" formControlName="Telefono" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        Celular
+                                    </label>
+                                    <input type="text" class="form-control" formControlName="Celular" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        E-Mail Usuario
+                                    </label>
+                                    <input type="text" class="form-control" formControlName="Mail" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        E-Mail Factura Electronica
+                                    </label>
+                                    <input type="text" class="form-control" formControlName="MailFE" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        Sitio Web
+                                    </label>
+                                    <input type="text" class="form-control" formControlName="Website" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        Asunto para correos en FE
+                                    </label>
+                                    <input type="text" class="form-control" formControlName="AsuntoEmail" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        Imagen Empresa
+                                    </label>
+                                    <input type="text" class="form-control" formControlName="urlImage" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        Leyenda
+                                        (Leyenda opcional para representación gráfica)
+                                    </label>
+                                    <input type="text" class="form-control" formControlName="Observacion" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        Linea de negocio
+                                    </label>
+                                    <input type="text" class="form-control" formControlName="LineaNegocio" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        Informacion ERP
+                                        (R.social del fabricante, NIT, nombre software)
+                                    </label>
+                                    <input type="text" class="form-control" formControlName="InfoERP" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="checkbox checkbox-primary checkbox-fill d-inline">
+                                        <input type="checkbox" id="switch-a-3" formControlName="IsContingencyDian">
+                                        <label for="switch-a-3" class="cr"></label>
+                                    </div>
+                                    <label>Activar contingencia Dian</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="checkbox checkbox-primary checkbox-fill d-inline">
+                                        <input type="checkbox" id="switch-a-4" formControlName="Estado">
+                                        <label for="switch-a-4" class="cr"></label>
+                                    </div>
+                                    <label>Empresa Activa</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </mat-tab>
+            <mat-tab label="Credenciales WS DIAN" style="padding: 1%;">
+                <form [formGroup]="CredentialsForm">
+                    <div class="container"
+                        style="padding: 30px;min-height: 450px;max-height: 450px; overflow-y: scroll;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        Nombre Software
+                                    </label>
+                                    <input type="text" class="form-control" formControlName="NameSoftware" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        PIN
+                                    </label>
+                                    <input type="text" class="form-control" formControlName="Pin" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        Id Software
+                                    </label>
+                                    <input type="text" class="form-control" formControlName="IdSoftware" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        Url Ambiente
+                                    </label>
+                                    <input type="text" class="form-control" formControlName="UrlAmbiente" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        TestId
+                                    </label>
+                                    <input type="text" class="form-control" formControlName="UsuarioAmbiente" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </mat-tab>
+            <mat-tab label="Configuración de formatos">
+                <form [formGroup]="FormatosForm">
+                    <div class="container"
+                        style="padding: 30px;min-height: 450px;max-height: 450px; overflow-y: scroll;">
+                        <div id="detail" class="row" formArrayName="formatosFactura">
+                            <table class="InvoiceDtl tabla">
+                                <thead class="InvoiceDtl">
+                                    <tr>
+                                        <th class="notranslate sticky" scope="text" style="width:
+                                        10%;">ID</th>
+                                        <th class="notranslate sticky" scope="text" style="width:
+                                        20%;">ID Formato</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="InvoiceDtl">
+                                    <tr class="InvoiceDtl" *ngFor="let dtl of FormatosForm.controls.formatosFactura['controls'];
+                                    let i=index" [formGroupName]="i">
+                                        <td class="InvoiceDtl stepAR4" data-heading="ID">
+                                            <div class="input-group">
+                                                <input readonly class="form-control
+                                                " placeholder="ID" formControlName="TipoFacturaDIAN">
+                                            </div>
+                                        </td>
+                                        <td class="InvoiceDtl stepAR4" data-heading="ID Formato">
+                                            <div class="input-group">
+                                                <input class="form-control
+                                                " placeholder="ID Formato" formControlName="MethodName">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </mat-tab>
+            <mat-tab label="Configuración IT">
+                <form [formGroup]="ITForm">
+                    <div class="container"
+                        style="padding: 30px;min-height: 450px;max-height: 450px; overflow-y: scroll;">
+                        <div id="detail" class="row" formArrayName="configuracionIT">
+                            <table class="InvoiceDtl tabla">
+                                <thead class="InvoiceDtl">
+                                    <tr>
+                                        <th class="notranslate sticky" scope="text" style="width:
+                                        10%;">ID</th>
+                                        <th class="notranslate sticky" scope="text" style="width:
+                                        20%;">URL Servicio</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="InvoiceDtl">
+                                    <tr class="InvoiceDtl" *ngFor="let dtl of ITForm.controls.configuracionIT['controls'];
+                                    let i=index" [formGroupName]="i">
+                                        <td class="InvoiceDtl stepAR4" data-heading="ID">
+                                            <div class="input-group">
+                                                <input readonly class="form-control
+                                                " placeholder="ID" formControlName="Tipo">
+                                            </div>
+                                        </td>
+                                        <td class="InvoiceDtl stepAR4" data-heading="URL Servicio">
+                                            <div class="input-group">
+                                                <input class="form-control
+                                                " placeholder="URL servicio" formControlName="WS">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </mat-tab>
+        </mat-tab-group>
+        <div class="row" style="padding: 30px;">
+            <div class="col-md-12">
+                <button class="btn btn-primary btn-block btn-lg" (click)="save()">Guardar</button>
+            </div>
+        </div>
+        <!--FILA PRINCIPAL -->
+    </app-card>
+</div>
+<!--<pre>{{ addItemForm.value | json }}</pre>-->

@@ -14,15 +14,10 @@ export class AdminComponent implements OnInit {
   public navCollapsed: boolean;
   public navCollapsedMob: boolean;
   public windowWidth: number;
-
-  
-  signalrConnectionEstablished$: Observable<boolean>;
-  chatmessages = [];
   
   position = 'bottom-right';
 
   constructor(
-    private signalRService: SignalRServiceService, 
     private zone: NgZone, 
     private location: Location) {
     this.dattaConfig = DattaConfig.config;
@@ -42,13 +37,6 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.signalrConnectionEstablished$ = this.signalRService.connectionEstablished$;
-
-    this.signalRService.messageReceived$.subscribe((message) => {
-      console.log(message);
-    });
-
 
   }
 
